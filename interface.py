@@ -162,8 +162,25 @@ elif option == '2':
                 conn.commit()
         elif inpt == '6':
                 print("Vaccination info")
+                petID = input("Enter Pet ID = ")
+                name = input("Enter Vaccine name = ")
+                date = input("Enter vaccine name = ")
+                dueDate = input("Enter Next Due Date = ")
+                vetID = input("Enter Vet ID = ")
+                cur.execute('''INSERT INTO Vaccinations(petID,VaccineName,vaccinationDate,nextDueDate,vetID)
+                            VALUES(?,?,?,?,?)''',(petID,name,date,dueDate,vetID))
+                conn.commit()
         elif input == '7':
                 print("Enter Owner's data")
+                ID = input("Enter Qwner ID = ")
+                name = input("Enter Owner name = ")
+                No = input("Enter Phone number = ")
+                email = input("Enter E-mail = ")
+                address = input("Enter address = ")
+                cur.execute('''INSERT INTO Owner(OwnerID,ownerName,phoneNo,Email,address)
+                            VALUES(?,?,?,?,?)''',(ID,name,No,email,address))
+                conn.commit()
+
 
         else:
                 print("Invalid input")
