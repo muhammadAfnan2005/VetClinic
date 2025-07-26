@@ -78,5 +78,60 @@ if option == '1':
         else:
                 print("Invalid input")
 
+elif option == '2':
+        input_menu()
+        inpt = input("Enter option = ")
+        if inpt== '1':
+                print("Pets info")
+        elif inpt=='2':
+                print("Treatment info")
+        elif inpt == '3':
+                print("Appointment info")
+        elif inpt == '4':
+                print("Meddicine info")
+        elif inpt == '5':
+                print("Bills")
+        elif inpt == '6':
+                print("Vaccination info")
+        else:
+                print("Invalid input")
+
+elif option == '3':
+        update_menu()
+        upd = input("Enter option = ")
+        if upd== '1':
+                print("Pets info")
+        elif upd=='2':
+                print("Treatment info")
+        elif upd == '3':
+                print("Appointment info")
+        elif upd == '4':
+                print("Meddicine info")
+        elif upd == '5':
+                print("Bills")
+        elif upd == '6':
+                print("Vaccination info")
+        else:
+                print("Invalid input")
+
+elif option == '4':
+        dele = input("Enter option = ")
+        if dele== '1':
+                print("Pets info")
+        elif dele=='2':
+                print("Treatment info")
+        elif dele == '3':
+                print("Appointment info")
+        elif dele == '4':
+                print("Meddicine info")
+        elif dele == '5':
+                print("Bills")
+        elif dele == '6':
+                print("Vaccination info")
+        else:
+                print("Invalid input")
+
+        
+
 conn.close()
 
