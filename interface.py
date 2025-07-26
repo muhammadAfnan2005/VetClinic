@@ -1,4 +1,5 @@
 import pyodbc
+import os
 
 server = 'LAPTOP-USGBCF7K'  
 database = 'UVAS_VetClinicDB'
@@ -11,6 +12,7 @@ conn = pyodbc.connect(
 )
 
 def menu():
+        os.system('cls')
         print("""What you want to do?
               1- Fetch data.
               2- Enter data.
@@ -19,6 +21,7 @@ def menu():
               """)
 
 def fetch_menu():
+        os.system('cls')
         print("""Which Data you want to fetch?
               1- Pets.
               2- Treatments.
@@ -29,6 +32,7 @@ def fetch_menu():
               7- Owner.""")
         
 def input_menu():
+        os.system('cls')
         print("""Which data you want to Enter?
               1- Pets.
               2- Treatments.
@@ -39,6 +43,7 @@ def input_menu():
               7- Owner.""")
         
 def update_menu():
+        os.system('cls')
         print("""Which data you want to Update?
               1- Pets.
               2- Treatments.
@@ -49,6 +54,7 @@ def update_menu():
               7- Owner.""")
         
 def delete_menu():
+        os.system('cls')
         print("""Which data you want to Delete?
               1- Pets.
               2- Treatments.
@@ -99,7 +105,6 @@ if option == '1':
                         print(row)
         elif fetch =='7':
                 print("Owner info")
-                print("Vaccination info")
                 cur.execute('''SELECT * FROM Owner''')
                 for row in cur.fetchall():
                         print(row)
@@ -122,7 +127,7 @@ elif option == '2':
                 conn.commit()
         elif inpt=='2':
                 appID = int(input("Enter appointment ID = "))
-                diagnos = input("Enter diagnpsis result = ")
+                diagnos = input("Enter diagnosis result = ")
                 med = input("Enter Medicine = ")
                 dos = input("Enter dosage of medicine = ")
                 advice = input("Enter Vet's Advice = ")
@@ -136,12 +141,12 @@ elif option == '2':
                 vet = input("Enter Vet ID = ")
                 time = input("Enter time = ")
                 cause = input("Enter disease = ")
-                cur.execute('''INSERT INTO Appointment(petID,vetID,Time,cause)
+                cur.execute('''INSERT INTO Appointments(petID,vetID,Time,cause)
                             VALUES(?,?,?,?)''',(pet,vet,time,cause))
                 conn.commit()
 
         elif inpt == '4':
-                print("Meddicine info")
+                print("Medicine info")
                 name = input("Enter Medicine name = ")
                 man = input("Enter manufacturer = ")
                 dose = input("Enter dosage = ")
@@ -172,7 +177,7 @@ elif option == '2':
                 conn.commit()
         elif input == '7':
                 print("Enter Owner's data")
-                ID = input("Enter Qwner ID = ")
+                ID = input("Enter Owner ID = ")
                 name = input("Enter Owner name = ")
                 No = input("Enter Phone number = ")
                 email = input("Enter E-mail = ")
