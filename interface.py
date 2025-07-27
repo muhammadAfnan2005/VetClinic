@@ -50,10 +50,9 @@ def update_menu():
         print("""Which data you want to Update?
               1- Pets.
               2- Appointment's Time.
-              3- Medicines.
-              4- Bills.
-              5- Vaccination date.
-              6- Owner.""")
+              3- Bills.
+              4- Vaccination date.
+              """)
         
 def delete_menu():
         os.system('cls')
