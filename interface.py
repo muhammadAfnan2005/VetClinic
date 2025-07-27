@@ -1,9 +1,11 @@
-import pyodbc
-import os
+import pyodbc           #add connector
+import os               #import os for clear screen before menu
 
+#Get server and database name
 server = 'LAPTOP-USGBCF7K'  
 database = 'UVAS_VetClinicDB'
        
+       #connect database
 conn = pyodbc.connect(
     'DRIVER={ODBC Driver 17 for SQL Server};'
     f'SERVER={server};'
@@ -11,7 +13,7 @@ conn = pyodbc.connect(
     'Trusted_Connection=yes;'     
 )
 
-def menu():
+def menu():                     #main menu
         os.system('cls')
         print("""What you want to do?
               1- Fetch data.
@@ -20,7 +22,7 @@ def menu():
               4- Delete data.
               """)
 
-def fetch_menu():
+def fetch_menu():               
         os.system('cls')
         print("""Which Data you want to fetch?
               1- Pets.
@@ -68,7 +70,10 @@ def delete_menu():
 cur = conn.cursor()
 
 menu()
+
 option = input("Enter option = ")
+
+#========================================== Fetch data from database===========================
 
 if option == '1':
         fetch_menu()
@@ -110,6 +115,8 @@ if option == '1':
                         print(row)
         else:
                 print("Invalid input")
+
+#===================================================Enter data in database=======================
 
 elif option == '2':
         input_menu()
@@ -190,11 +197,16 @@ elif option == '2':
         else:
                 print("Invalid input")
 
+#==================================================update data==========================
+
 elif option == '3':
         update_menu()
         upd = input("Enter option = ")
         if upd== '1':
                 print("Pets info")
+                ID = input("Enter pet ID = ")
+                new_age = input("Enter new age = ")
+                cur.execute('''UPDATE Pets SET age = ?''',new_age)
         elif upd=='2':
                 print("Treatment info")
         elif upd == '3':
