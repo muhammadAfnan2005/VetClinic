@@ -48,12 +48,11 @@ def update_menu():
         os.system('cls')
         print("""Which data you want to Update?
               1- Pets.
-              2- Treatments.
-              3- Appointments.
-              4- Medicines.
-              5- Bills.
-              6- Vaccinations.
-              7- Owner.""")
+              2- Appointment's Time.
+              3- Medicines.
+              4- Bills.
+              5- Vaccination date.
+              6- Owner.""")
         
 def delete_menu():
         os.system('cls')
@@ -202,42 +201,130 @@ elif option == '2':
 elif option == '3':
         update_menu()
         upd = input("Enter option = ")
-        if upd== '1':
-                print("Pets info")
-                ID = input("Enter pet ID = ")
-                new_age = input("Enter new age = ")
-                cur.execute('''UPDATE Pets SET age = ?''',new_age)
-        elif upd=='2':
-                print("Treatment info")
-        elif upd == '3':
+        if upd== '1':                  
+                ID = int(input("Enter pet ID = "))
+                print("""What you want to update?
+                      1- Pet name.
+                      2- Pet age.
+                      3- Pet Specie
+                      4- Pet Gender.
+                      5- Pet Breed.
+                      6- Pet Owner ID.""")
+                op = input("Enter option = ")
+                if op == '1':
+                        name = input("Enter new name = ")
+                        cur.execute('''UPDATE Pets SET petName = ? WHERE petID = ?''',(name,ID))
+                        conn.commit()
+                        print("Updated successfully!")
+                if op == '2':
+                        age = int(input("Enter new age = "))
+                        cur.execute('''UPDATE Pets SET age = ? WHERE petID = ?''',(age,ID))
+                        conn.commit()
+                        print("Updated successfully!")
+                if op == '3':
+                        specie = input("Enter new specie = ")
+                        cur.execute('''UPDATE Pets SET specie = ? WHERE petID = ?''',(specie,ID))
+                        conn.commit()
+                        print("Updated successfully!")
+                if op == '4':
+                        gender = input("Enter new gender = ")
+                        cur.execute('''UPDATE Pets SET gender = ? WHERE petID = ?''',(gender,ID))
+                        conn.commit()
+                        print("Updated successfully!")
+                if op == '5':
+                        breed = input("Enter new breed = ")
+                        cur.execute('''UPDATE Pets SET breed = ? WHERE petID = ?''',(breed,ID))
+                        conn.commit()
+                        print("Updated successfully!")
+                if op == '6':
+                        ownID = input("Enter new Owner ID = ")
+                        cur.execute('''UPDATE Pets SET OwnerID = ? WHERE petID = ?''',(ownID,ID))
+                        conn.commit()
+                        print("Updated successfully!")
+        elif upd == '2':
                 print("Appointment info")
-        elif upd == '4':
-                print("Meddicine info")
-        elif upd == '5':
+                ID = input("Enter Appointment ID = ")
+                time = input("Enter new time = ")
+                cur.execute("""UPDATE Appointments SET Time = ? WHERE AppointmentID = ?""",(time,ID))
+                conn.commit()
+                print("Updated successfully!")
+        elif upd == '3':
                 print("Bills")
-        elif upd == '6':
+                ID = input("Enter Bill ID = ")
+                print("""What you want to update?
+                      1- Amount.
+                      2- Payment status.
+                      3- payment method.""")
+                op = input("Enter option = ")
+                if op == '1':
+                        amount = input("Enter amount = ")
+                        cur.execute('''UPDATE Bills SET amount = ? WHERE billID = ?''',(amount,ID))
+                        conn.commit()
+                        print("Updates Successfully!")
+                if op == '2':
+                        status = input("Enter Payment Status = ")
+                        cur.execute('''UPDATE Bills SET paymentstatus = ? WHERE billID = ?''',(status,ID))
+                        conn.commit()
+                        print("Updates Successfully!")
+                if op == '3':
+                        method = input("Enter Payment Method = ")
+                        cur.execute('''UPDATE Bills SET paymentmethod = ? WHERE billID = ?''',(method,ID))
+                        conn.commit()
+                        print("Updates Successfully!")
+        elif upd == '4':
                 print("Vaccination info")
+                ID = input("Enter Vaccination ID = ")
+                date = input("Enter date = ")
+                due_date = input("Enter next due date = ")
+                cur.execute('''UPDATE Vaccinations SET vaccinationDate = ?,nextDueDate = ? WHERE vaccinationID = ?''',(date,due_date,ID))
+                conn.commit()
+                print("Updated Succcessfully!")
         else:
                 print("Invalid input")
+
+#===========================================Dlete Data================================
 
 elif option == '4':
         dele = input("Enter option = ")
         if dele== '1':
                 print("Pets info")
+                ID = input("Enter pet ID for deletion = ")
+                cur.execute('''DELETE FROM Pets WHERE petID = ''',(ID,))
+                conn.commit()
+                print("Deleted Successfully!")
         elif dele=='2':
                 print("Treatment info")
+                ID = input("Enter Treatment ID for deletion = ")
+                cur.execute('''DELETE FROM Treatments WHERE treatmentID = ''',(ID,))
+                conn.commit()
+                print("Deleted Successfully!")
         elif dele == '3':
                 print("Appointment info")
+                ID = input("Enter Appointment ID for deletion = ")
+                cur.execute('''DELETE FROM Appointments WHERE AppointmentID = ''',(ID,))
+                conn.commit()
+                print("Deleted Successfully!")
         elif dele == '4':
-                print("Meddicine info")
+                print("Medicine info")
+                ID = input("Enter Medicine ID for deletion = ")
+                cur.execute('''DELETE FROM Medicines WHERE medicineID = ''',(ID,))
+                conn.commit()
+                print("Deleted Successfully!")
         elif dele == '5':
                 print("Bills")
+                ID = input("Enter Bill ID for deletion = ")
+                cur.execute('''DELETE FROM Bills WHERE billID = ''',(ID,))
+                conn.commit()
+                print("Deleted Successfully!")
         elif dele == '6':
                 print("Vaccination info")
+                ID = input("Enter Vaccination ID for deletion = ")
+                cur.execute('''DELETE FROM Vaccinations WHERE vaccinationID = ''',(ID,))
+                conn.commit()
+                print("Deleted Successfully!")
         else:
                 print("Invalid input")
 
         
 
 conn.close()
-
