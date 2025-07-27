@@ -14,8 +14,8 @@ conn = pyodbc.connect(
 )
 
 def menu():                     #main menu
-        os.system('cls')
-        print("""What you want to do?
+        print("""
+              What you want to do?
               1- Fetch data.
               2- Enter data.
               3- Update data.
@@ -69,11 +69,17 @@ def delete_menu():
 
 cur = conn.cursor()
 
+password = input("Enter password = ")
+if password != '1234':
+        print("Incorrect password!")
+        exit()
+
 while True:
         menu()
 
         option = input("Enter option = ")
-        if option == 'exit':
+        if option.lower() == 'exit':
+                print("Good Bye!")
                 break
 
         #========================================== Fetch data from database===========================
@@ -185,7 +191,7 @@ while True:
                         cur.execute('''INSERT INTO Vaccinations(petID,VaccineName,vaccinationDate,nextDueDate,vetID)
                                     VALUES(?,?,?,?,?)''',(petID,name,date,dueDate,vetID))
                         conn.commit()
-                elif input == '7':
+                elif inpt == '7':
                         print("Enter Owner's data")
                         ID = input("Enter Owner ID = ")
                         name = input("Enter Owner name = ")
@@ -289,41 +295,42 @@ while True:
         #===========================================Dlete Data================================
 
         elif option == '4':
+                delete_menu()
                 dele = input("Enter option = ")
                 if dele== '1':
                         print("Pets info")
                         ID = input("Enter pet ID for deletion = ")
-                        cur.execute('''DELETE FROM Pets WHERE petID = ''',(ID,))
+                        cur.execute('''DELETE FROM Pets WHERE petID = ?''',(ID,))
                         conn.commit()
                         print("Deleted Successfully!")
                 elif dele=='2':
                         print("Treatment info")
                         ID = input("Enter Treatment ID for deletion = ")
-                        cur.execute('''DELETE FROM Treatments WHERE treatmentID = ''',(ID,))
+                        cur.execute('''DELETE FROM Treatments WHERE treatmentID = ?''',(ID,))
                         conn.commit()
                         print("Deleted Successfully!")
                 elif dele == '3':
                         print("Appointment info")
                         ID = input("Enter Appointment ID for deletion = ")
-                        cur.execute('''DELETE FROM Appointments WHERE AppointmentID = ''',(ID,))
+                        cur.execute('''DELETE FROM Appointments WHERE AppointmentID = ?''',(ID,))
                         conn.commit()
                         print("Deleted Successfully!")
                 elif dele == '4':
                         print("Medicine info")
                         ID = input("Enter Medicine ID for deletion = ")
-                        cur.execute('''DELETE FROM Medicines WHERE medicineID = ''',(ID,))
+                        cur.execute('''DELETE FROM Medicines WHERE medicineID = ?''',(ID,))
                         conn.commit()
                         print("Deleted Successfully!")
                 elif dele == '5':
                         print("Bills")
                         ID = input("Enter Bill ID for deletion = ")
-                        cur.execute('''DELETE FROM Bills WHERE billID = ''',(ID,))
+                        cur.execute('''DELETE FROM Bills WHERE billID = ?''',(ID,))
                         conn.commit()
                         print("Deleted Successfully!")
                 elif dele == '6':
                         print("Vaccination info")
                         ID = input("Enter Vaccination ID for deletion = ")
-                        cur.execute('''DELETE FROM Vaccinations WHERE vaccinationID = ''',(ID,))
+                        cur.execute('''DELETE FROM Vaccinations WHERE vaccinationID = ?''',(ID,))
                         conn.commit()
                         print("Deleted Successfully!")
                 else:
@@ -331,4 +338,4 @@ while True:
 
                 
 
-        conn.close()
+conn.close()
